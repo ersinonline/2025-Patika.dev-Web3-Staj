@@ -1,37 +1,36 @@
-// hesap makinesi
-// değişkenler (let -> immutable, var -> mutable)
-// operatörler
-// async metodu
-// if condition
+// main.mo
+// Hesap Makinesi
+// Bu akıllı sözleşme, basit matematiksel işlemler yapabilen bir hesap makinesidir.
 
-// canister => akıllı sözleşme
+// Değişkenler: let -> immutable, var -> mutable
+// Operatörler, async metotlar, ve if koşul yapısı kullanılmıştır.
 
 actor hesap_makinesi {
+    // Hesap makinesi sonucu depolayan değişken
     var hucre: Int = 0;
     
-    // toplama
-    // fonksiyon
+    // Toplama fonksiyonu
     public func toplama(s: Int): async Int {
         hucre += s;
         hucre
-        //(Debug.print(debug_show(hucre)));
     };
     
-    // çıkarma
+    // Çıkarma fonksiyonu
     public func cikarma(s: Int): async Int {
         hucre -= s;
         hucre
     };
     
-    // çarpma
+    // Çarpma fonksiyonu
     public func carpma(s: Int): async Int {
         hucre *= s;
         hucre
     };
     
-    // bölme
+    // Bölme fonksiyonu
     public func bolme(s: Int): async ?Int {
         if (s == 0) {
+            // Sıfıra bölme hatası durumunda null döner
             null
         } else {
             hucre /= s;
@@ -39,8 +38,18 @@ actor hesap_makinesi {
         };
     };
     
-    // temizle
-    public func temizle() : async () {
+    // Hesap makinesini sıfırlayan fonksiyon
+    public func temizle(): async () {
         hucre := 0;
+    };
+    
+    // Mevcut değeri döndüren fonksiyon
+    public func degeriGoster(): async Int {
+        hucre
+    };
+    
+    // Debug amaçlı, mevcut değeri yazdırır (isteğe bağlı kullanılabilir)
+    public func debugYazdir(): async () {
+        Debug.print(debug_show(hucre));
     };
 };
